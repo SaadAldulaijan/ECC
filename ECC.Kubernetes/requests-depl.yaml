@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: requests-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: requestsservice
+  template:
+    metadata:
+      labels:
+        app: requestsservice
+    spec:
+      containers:
+        - name: requestsservice
+          image: saadaldulaijan/eccrequests:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: requests-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: requestsservice
+  ports:
+    - name: requestsservice
+      protocol: TCP
+      port: 80
+      targetPort: 80

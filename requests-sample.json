@@ -1,0 +1,29 @@
+{
+    "emergencyCodeRequest": {
+        "title": "code black",
+        "description": "user reported code pink has been activated",
+        "codeId": 1,
+        "reporterName": "saad",
+        "reporterExtension": 32502,
+        "location": "IT Building - First Floor",
+        "activatedAt": "4/25/2022 12:55:00 AM",
+        "clearedAt": "4/25/2022 12:55:00 AM",
+        "requestType": 1
+    },
+    "callRequest": {
+        "title": "Patient call",
+        "description": "patient called asking for his medication",
+        "onSet": "patient has no symptomps",
+        "patientMRN": 123423,
+        "patientName": "ahmed",
+        "patientAge": 34,
+        "requestType": 0,
+        "medicalHistoryIds": [
+            1,
+            3,
+            4,
+            6,
+            7
+        ]
+    }
+}

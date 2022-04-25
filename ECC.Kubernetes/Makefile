@@ -7,4 +7,6 @@ up:
 	kubectl apply -f sqlusers-depl.yaml -n ecc
 	kubectl apply -f users-depl.yaml -n ecc
 	kubectl apply -f users-np.yaml -n ecc
-	
+
+	kubectl apply -f requests-depl.yaml -n ecc
+	kubectl apply -f requests-np.yaml -n ecc
