@@ -1,4 +1,5 @@
-﻿using ECC.Requests.Contracts;
+﻿using ECC.Requests.APIs;
+using ECC.Requests.Contracts;
 using ECC.Requests.Database;
 using ECC.Requests.Models.CallRequestModels;
 using ECC.Requests.Models.EmergencyCodeModels;
@@ -17,19 +18,25 @@ namespace ECC.Requests.Controllers
     public class RequestsController : ControllerBase
     {
         private readonly DataContext _ctx;
+        private readonly IUsersClient _usersClient;
 
-        public RequestsController(DataContext ctx)
+        public RequestsController(DataContext ctx, IUsersClient usersClient)
         {
             _ctx = ctx;
+            _usersClient = usersClient;
         }
 
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GetRequestDto>>> Get()
         {
-            return Ok(await _ctx.Requests
+            // TODO: for testing only
+            var user = await _usersClient.GetUserAsync(1);
+            var requests = await _ctx.Requests
                 .Select(x => x.AsDto())
-                .ToListAsync());
+                .ToListAsync();
+            requests.ForEach(x => x.CreatedBy = user.Id);
+            return Ok(requests);
         }
 
         [HttpGet("{id}")]

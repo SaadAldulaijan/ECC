@@ -1,3 +1,4 @@
+using ECC.Requests.APIs;
 using ECC.Requests.Database;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +14,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+
+builder.Services.AddHttpClient<IUsersClient, UsersClient>(options =>
+{
+    options.BaseAddress = new Uri(builder.Configuration["UsersService:Url"]);
+});
 
 var app = builder.Build();
 

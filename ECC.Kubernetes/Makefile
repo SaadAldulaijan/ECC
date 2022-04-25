@@ -10,3 +10,4 @@ up:
 
 	kubectl apply -f requests-depl.yaml -n ecc
 	kubectl apply -f requests-np.yaml -n ecc
+	kubectl rollout restart deployment requests-depl -n ecc
